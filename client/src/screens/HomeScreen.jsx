@@ -18,7 +18,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={s`#fff`}>
       <StatusBar barStyle="dark-content" />
-      <View style={s`flex-row items-center mx-3 my-6`}>
+      <View style={s`flex-row items-center mx-3 my-8`}>
         <View
           style={s`w-full flex-row flex-1 item-center p-3 rounded-full border border-gray-300`}>
           <Icon.Search height="25" width="25" stroke="gray" />

@@ -3,7 +3,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import HomeScreen from './screens/HomeScreen';
-import RestaurentScreen from './screens/RestaurentScreen';
+import RestaurantScreen from './screens/RestaurantScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,8 +21,8 @@ export default function Navigation() {
             }}
           />
           <Stack.Screen
-            name="Restaurent"
-            component={RestaurentScreen}
+            name="Restaurant"
+            component={RestaurantScreen}
             options={{
               headerStyle: {backgroundColor: '#fff'},
               headerShown: false,
