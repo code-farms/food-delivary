@@ -5,7 +5,6 @@ import {Minus, Plus} from 'react-native-feather';
 import {themeColors} from '../theme';
 
 export default function DishRow({item}) {
-  console.log(item);
   return (
     <View
       style={{

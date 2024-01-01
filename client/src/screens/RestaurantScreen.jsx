@@ -6,23 +6,35 @@ import {
   StatusBar,
   Text,
 } from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {s} from 'react-native-wind';
 import {useNavigation, useRoute} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
 import {ArrowLeft} from 'react-native-feather';
 import {themeColors} from '../theme';
 import fullStar from './../assets/images/fullStar.png';
 import {MapPin} from 'react-native-feather';
 import DishRow from '../components/DishRow';
+import CartIcon from '../components/CartIcon';
+import {setRestaurant} from '../slices/restaurantSlice';
 
 export default function RestaurentScreen() {
   const navigation = useNavigation();
   const {params} = useRoute();
   const item = params.item;
-  console.log('Dishes', item.dishes);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (item && item.id) {
+      dispatch(setRestaurant({...item}));
+    }
+  }, []);
+
   return (
     <View>
       <StatusBar barStyle="lighcontent" />
+      <CartIcon />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={s`relative`}>
           <Image source={item.image} style={s`w-full h-72`} />
