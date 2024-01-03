@@ -72,7 +72,7 @@ export default function RestaurentScreen() {
           <View>
             <Text style={s`mt-5 text-lg`}>{item.description} </Text>
           </View>
-          <View>
+          <View style={s`mb-20`}>
             <Text style={s`my-3 text-3xl font-bold`}>Menu</Text>
             {/* Dishes */}
             {item.dishes.map((dish, index) => (

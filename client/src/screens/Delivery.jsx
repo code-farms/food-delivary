@@ -3,18 +3,28 @@ import React from 'react';
 import {s} from 'react-native-wind';
 import {useNavigation} from '@react-navigation/native';
 import {featured} from '../constants';
-import MapView, {Marker} from 'react-native-maps';
+// import MapView, {Marker} from 'react-native-maps';
 import {themeColors} from '../theme';
 import bikeGuy2 from '../assets/images/bikeGuy2.gif';
 import deliveryGuy from '../assets/images/deliveryGuy.png';
 import {Phone, X} from 'react-native-feather';
+import {useDispatch, useSelector} from 'react-redux';
+import {selectResturant} from '../slices/restaurantSlice';
+import {emptyCart} from '../slices/cartSlice';
 
 export default function Delivery() {
   const navigation = useNavigation();
-  const restaurant = featured.restaurants[0];
+  const dispatch = useDispatch();
+  // const restaurant = useSelector(selectResturant);
+
+  const cancelOrder = () => {
+    navigation.navigate('Home');
+    dispatch(emptyCart());
+  };
+
   return (
     <View style={s`flex-1`}>
-      <MapView
+      {/* <MapView
         initialRegion={{
           latitude: restaurant.lat,
           longitude: restaurant.lng,
@@ -29,7 +39,7 @@ export default function Delivery() {
           description={restaurant.description}
           pinColor={themeColors.bgColor(1)}
         />
-      </MapView>
+      </MapView> */}
       <View style={{...s`rounded-t-3xl relative bg-white`, marginTop: -20}}>
         <View style={s`flex-row justify-between px-5 pt-10`}>
           <View style={{gap: 5}}>
@@ -73,7 +83,7 @@ export default function Delivery() {
               />
             </TouchableOpacity>
             <TouchableOpacity
-              onPress={() => navigation.navigate('Home')}
+              onPress={cancelOrder}
               style={s`bg-white p-2 rounded-full`}>
               <X stroke={'red'} strokeWidth={4} />
             </TouchableOpacity>

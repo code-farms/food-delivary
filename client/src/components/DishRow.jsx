@@ -1,10 +1,28 @@
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {s} from 'react-native-wind';
 import {Minus, Plus} from 'react-native-feather';
 import {themeColors} from '../theme';
+import {
+  addToCart,
+  removeFromCart,
+  selectCartItems,
+  selectCartItemsById,
+} from '../slices/cartSlice';
 
 export default function DishRow({item}) {
+  const dispatch = useDispatch();
+
+  const totalItems = useSelector(state => selectCartItemsById(state, item.id));
+
+  const handleDecrease = () => {
+    dispatch(removeFromCart({id: item.id}));
+  };
+  const handleIncrease = () => {
+    dispatch(addToCart({...item}));
+  };
+
   return (
     <View
       style={{
@@ -24,14 +42,17 @@ export default function DishRow({item}) {
           <Text style={s`text-lg font-bold text-gray-700`}>{item.price}</Text>
           <View style={s`flex-row items-center`}>
             <TouchableOpacity
+              onPress={handleDecrease}
+              disabled={!totalItems.length}
               style={{
                 ...s`p-1 rounded-full`,
                 backgroundColor: themeColors.bgColor(1),
               }}>
               <Minus height={20} width={20} strokeWidth={2} stroke={'white'} />
             </TouchableOpacity>
-            <Text style={s`px-3`}>{2}</Text>
+            <Text style={s`px-3`}>{totalItems.length}</Text>
             <TouchableOpacity
+              onPress={handleIncrease}
               style={{
                 ...s`p-1 rounded-full`,
                 backgroundColor: themeColors.bgColor(1),
