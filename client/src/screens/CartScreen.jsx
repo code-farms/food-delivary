@@ -9,7 +9,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {selectResturant} from '../slices/restaurantSlice';
 import {
   addToCart,
-  removeFromCart,
+  reduceFromCart,
   selectCartItems,
   selectCartItemsById,
   selectCartTotal,
@@ -38,6 +38,23 @@ export default function CartScreen() {
   }, [cartItems]);
 
   const deliveryFee = 2;
+
+  // if (!cartItems.length) {
+  //   return (
+  //     <View style={s`mx-5 relative`}>
+  //       <View style={s`absolute`}></View>
+  //       <View
+  //         style={{
+  //           ...s`rounded-full p-3  z-50 bottom-5 w-full absolute`,
+  //           backgroundColor: themeColors.bgColor(1),
+  //         }}>
+  //         <Text style={s`text-xl text-white font-extrabold text-center`}>
+  //           Back to Home
+  //         </Text>
+  //       </View>
+  //     </View>
+  //   );
+  // }
 
   return (
     <View style={s`bg-white flex-1`}>
@@ -86,7 +103,7 @@ export default function CartScreen() {
               <Image source={dish.image} style={s`h-14 w-14 rounded-full`} />
               <Text style={s`flex-1 font-bold text-gray-700`}>{dish.name}</Text>
               <TouchableOpacity
-                onPress={() => dispatch(removeFromCart({id: dish.id}))}
+                onPress={() => dispatch(reduceFromCart(dish.id))}
                 style={{
                   ...s`p-1 rounded-full`,
                   backgroundColor: themeColors.bgColor(1),

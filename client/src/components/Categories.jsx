@@ -1,11 +1,4 @@
-import {
-  View,
-  Text,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-} from 'react-native';
+import {View, Text, ScrollView, Image, TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import {s} from 'react-native-wind';
 import {categories} from '../constants';
@@ -15,7 +8,7 @@ export default function Categories() {
 
   return (
     <View>
-      <ScrollView horizontal="false" showsHorizontalScrollIndicator={false}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         <View style={{...s`flex-row items-center mb-8`, gap: 15}}>
           {categories.map((category, index) => {
             let isActive = category.id === activeCategory;

@@ -6,7 +6,7 @@ import {Minus, Plus} from 'react-native-feather';
 import {themeColors} from '../theme';
 import {
   addToCart,
-  removeFromCart,
+  reduceFromCart,
   selectCartItems,
   selectCartItemsById,
 } from '../slices/cartSlice';
@@ -15,9 +15,10 @@ export default function DishRow({item}) {
   const dispatch = useDispatch();
 
   const totalItems = useSelector(state => selectCartItemsById(state, item.id));
+  // const totalItems = useSelector(selectCartItems);
 
   const handleDecrease = () => {
-    dispatch(removeFromCart({id: item.id}));
+    dispatch(reduceFromCart(item.id));
   };
   const handleIncrease = () => {
     dispatch(addToCart({...item}));
